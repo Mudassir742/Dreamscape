@@ -1,3 +1,4 @@
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +10,7 @@ body {
     line-height: 1.6;
 }
 
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -16,23 +18,33 @@ body {
     padding: 1rem 2rem;
     background: #333;
     color: #fff;
+    position: relative;
 }
 
 .nav-links {
     list-style: none;
+    display: flex;
+    gap: 1rem;
+    transition: max-height 0.3s ease;
 }
 
-.nav-links li {
-    display: inline;
-    margin-left: 1rem;
+/* Mobile Menu Toggle Button */
+.menu-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Hidden on desktop */
 }
+
 
 .nav-links a {
     color: #fff;
     text-decoration: none;
 }
 
-
+/* Hero Section */
 .hero {
     background-image: url('./hero.jpg');
     background-size: cover;
@@ -41,7 +53,6 @@ body {
     justify-content: center;
     text-align: center;
     height: 500px;
-    overflow: hidden;
     background-position: center;
     position: relative;
 }
@@ -57,7 +68,7 @@ body {
     z-index: 1;
 }
 
-.hero-content{
+.hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,8 +80,10 @@ body {
 
 .hero-content h1 {
     font-size: 2.5rem;
+    text-align: center;
 }
 
+/* Button */
 .btn {
     background-color: #f54b42;
     color: #fff;
@@ -79,6 +92,7 @@ body {
     text-decoration: none;
 }
 
+/* Sections */
 .main-focus, .properties-location, .featured-listings, .client-feedback, .news-feed {
     padding: 2rem 1rem;
     text-align: center;
@@ -89,10 +103,11 @@ h2 {
     margin-bottom: 1rem;
 }
 
-.focus-cards, .location-cards, .listing-cards, .news-cards {
+.location-cards, .listing-cards, .news-cards {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap;
     margin-top: 1rem;
 }
 
@@ -103,11 +118,72 @@ h2 {
     border-radius: 5px;
     width: 150px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    flex: 1 1 150px;
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 1rem 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .nav-links {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #333;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .nav-links[data-visible="true"] {
+        max-height: 200px; /* Adjust height based on content */
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .menu-toggle {
+        display: inline; /* Show on mobile */
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        z-index: 3;
+        padding: 1rem;
+        flex-direction: column;
+    }
+
+    .hero {
+        height: 400px;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+    }
+
+    .card {
+        width: 100%;
+    }
 }

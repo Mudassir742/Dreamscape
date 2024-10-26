@@ -17,7 +17,10 @@
 <header>
     <nav class="navbar">
         <div class="logo">DreamsCape</div>
-        <ul class="nav-links">
+        <button class="menu-toggle" aria-controls="nav-links" aria-expanded="false">
+            ☰
+        </button>
+        <ul class="nav-links" id="nav-links" data-visible="false">
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Properties</a></li>
@@ -80,5 +83,20 @@
 <footer>
     <p>&copy; 2023 DreamsCape - All rights reserved.</p>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function () {
+            const isVisible = navLinks.getAttribute('data-visible') === "true";
+
+            // Toggle the data-visible attribute
+            navLinks.setAttribute('data-visible', !isVisible);
+            menuToggle.setAttribute('aria-expanded', !isVisible);
+        });
+    });
+</script>
 </body>
 </html>
